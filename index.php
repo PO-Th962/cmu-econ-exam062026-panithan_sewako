@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="container">
     <div style="text-align: right; margin-bottom: 20px;">
-        <a href="login.php" style="background: #6c757d; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-size: 14px;">🔑 สำหรับ Admin</a>
+        <a href="login.php" style="background: #6c757d; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-size: 14px;">สำหรับ Admin</a>
     </div>
 
-    <h2>📝 ลงทะเบียนเข้าร่วมการอบรม</h2>
+    <h2>ลงทะเบียนเข้าร่วมการอบรม</h2>
     
     <?php if($message): ?> <div class="message"><?php echo $message; ?></div> <?php endif; ?>
 

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div class="container" style="max-width: 400px; margin-top: 100px;">
-    <h2>🔒 เข้าสู่ระบบ Admin</h2>
+    <h2> เข้าสู่ระบบ Admin</h2>
     <?php if($error): ?> <div class="message" style="background:#f8d7da; color:#721c24;"><?php echo $error; ?></div> <?php endif; ?>
     
     <form method="POST" action="login.php">

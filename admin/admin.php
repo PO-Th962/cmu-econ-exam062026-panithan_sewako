@@ -81,7 +81,7 @@ $course_summary = $conn->query("SELECT course, COUNT(*) as total FROM users GROU
     
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h2> ระบบจัดการสำหรับผู้ดูแลระบบ (Admin)</h2>
-        <a href="admin.php?action=logout" style="background:#dc3545; color:white; padding:8px 15px; text-decoration:none; border-radius:5px; font-size:14px;">ออกจากระบบ 🚪</a>
+        <a href="admin.php?action=logout" style="background:#dc3545; color:white; padding:8px 15px; text-decoration:none; border-radius:5px; font-size:14px;">ออกจากระบบ</a>
     </div>
 
     <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid #1a73e8;">
