@@ -26,7 +26,8 @@ services:
         sleep 1
       done &&
       echo 'Database is ready, running migrations and seeders...' &&
-      php artisan migrate:fresh --force --seed &&
+      php artisan migrate --force &&
+      php artisan db:seed --force &&
       echo 'Starting Apache server...' &&
       apache2-foreground
       "

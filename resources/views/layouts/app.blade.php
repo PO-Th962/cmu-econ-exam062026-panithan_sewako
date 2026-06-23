@@ -12,10 +12,10 @@
     
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            --accent-gradient: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-            --danger-gradient: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
-            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --primary-color: #9E76B4;
+            --accent-color: #286428;
+            --danger-color: #e53e3e;
+            --success-color: #38a169;
             --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(255, 255, 255, 0.4);
             
@@ -35,8 +35,7 @@
 
         body {
             font-family: 'Sarabun', 'Outfit', sans-serif;
-            background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%),
-                        linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            background-color: #f4effa;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -75,13 +74,13 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--primary-gradient);
+            background: var(--primary-color);
         }
 
         h2 {
             font-family: 'Sarabun', sans-serif;
             font-weight: 700;
-            color: #1e3c72;
+            color: var(--primary-color);
             margin-bottom: 25px;
             font-size: 24px;
             letter-spacing: -0.5px;
@@ -120,14 +119,14 @@
 
         .form-control:focus {
             outline: none;
-            border-color: #2a5298;
+            border-color: var(--primary-color);
             background-color: #fff;
-            box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.15);
+            box-shadow: 0 0 0 4px rgba(158, 118, 180, 0.15);
         }
 
         /* Buttons */
         .btn-submit {
-            background: var(--primary-gradient);
+            background: var(--primary-color);
             color: white;
             padding: 14px 24px;
             border: none;
@@ -137,7 +136,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+            box-shadow: 0 4px 15px rgba(158, 118, 180, 0.3);
             text-align: center;
             display: inline-block;
             text-decoration: none;
@@ -145,7 +144,7 @@
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4);
+            box-shadow: 0 6px 20px rgba(158, 118, 180, 0.4);
             opacity: 0.95;
         }
 
@@ -178,7 +177,7 @@
             padding: 16px;
             margin-bottom: 25px;
             border-radius: var(--border-radius-md);
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            background: #d4edda;
             color: #155724;
             border: 1px solid rgba(212, 237, 218, 0.5);
             font-size: 15px;
@@ -190,7 +189,7 @@
             padding: 16px;
             margin-bottom: 25px;
             border-radius: var(--border-radius-md);
-            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            background: #f8d7da;
             color: #721c24;
             border: 1px solid rgba(248, 215, 218, 0.5);
             font-size: 15px;
@@ -199,7 +198,7 @@
         }
 
         a.link-accent {
-            color: #2a5298;
+            color: var(--primary-color);
             font-size: 14px;
             text-decoration: none;
             font-weight: 500;
@@ -207,7 +206,7 @@
         }
 
         a.link-accent:hover {
-            color: #1e3c72;
+            color: var(--accent-color);
             text-decoration: underline;
         }
 
@@ -240,7 +239,7 @@
         }
 
         th {
-            background: var(--primary-gradient);
+            background: var(--primary-color);
             color: white;
             padding: 16px;
             font-weight: 600;

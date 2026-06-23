@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminResetPinMail;
 
@@ -64,7 +63,8 @@ class AdminAuthController extends Controller
             try {
                 Mail::to($admin->email)->send(new AdminResetPinMail($pin));
             } catch (\Exception $e) {
-                return back()->withErrors(['error' => 'ไม่สามารถส่งอีเมลได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง'])->withInput();
+                \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
+                // ไม่ต้อง return back() เพื่อให้สามารถนำ PIN จาก Docker terminal ไปทดสอบต่อได้
             }
 
             return redirect()->route('admin.verify_pin')->with([

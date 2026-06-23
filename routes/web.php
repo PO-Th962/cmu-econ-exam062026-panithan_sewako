@@ -60,8 +60,10 @@ Route::prefix('admin')->group(function () {
         // หน้าหลัก Dashboard รายชื่อผู้ลงทะเบียน
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-        // การส่งคำนวณวันอบรมขั้นต่ำ
-        Route::post('/calculate', [AdminDashboardController::class, 'calculate'])->name('admin.calculate');
+        // จัดการหลักสูตร
+        Route::post('/courses', [AdminDashboardController::class, 'storeCourse'])->name('admin.course.store');
+        Route::delete('/courses/{id}', [AdminDashboardController::class, 'deleteCourse'])->name('admin.course.delete');
+
 
         // ลบข้อมูลผู้สมัครเข้าอบรม
         Route::get('/delete/{id}', [AdminDashboardController::class, 'delete'])->name('admin.delete');

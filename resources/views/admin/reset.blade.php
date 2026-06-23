@@ -3,13 +3,13 @@
 @section('title', 'ตั้งรหัสผ่านใหม่สำหรับ Admin - คณะเศรษฐศาสตร์ มช.')
 
 @section('content')
-    <h2 style="color: #c62828;">ตั้งรหัสผ่านใหม่สำหรับ Admin</h2>
+    <h2>ตั้งรหัสผ่านใหม่สำหรับ Admin</h2>
     <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 14px; text-align: center;">
         กรุณากรอกรหัสผ่านใหม่สำหรับบัญชีผู้ดูแลระบบของคุณ
     </p>
 
     @if($errors->has('error'))
-        <div class="message-error" style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); color: #c62828;">
+        <div class="message-error">
             {{ $errors->first('error') }}
         </div>
     @endif
@@ -33,6 +33,6 @@
             <input type="password" id="confirm_password" class="form-control" name="confirm_password" required minlength="4" placeholder="กรอกรหัสผ่านใหม่อีกครั้ง">
         </div>
 
-        <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%); box-shadow: 0 4px 15px rgba(198, 40, 40, 0.3); margin-top: 10px;">บันทึกและเปลี่ยนรหัสผ่าน</button>
+        <button type="submit" class="btn-submit mt-3">บันทึกและเปลี่ยนรหัสผ่าน</button>
     </form>
 @endsection

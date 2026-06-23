@@ -105,9 +105,9 @@
             <label for="course">หลักสูตรที่สนใจเข้าอบรม</label>
             <select id="course" class="form-control" name="course" required>
                 <option value="">-- กรุณาเลือกหลักสูตร --</option>
-                <option value="การวิเคราะห์ข้อมูลด้วย Excel" {{ old('course') === 'การวิเคราะห์ข้อมูลด้วย Excel' ? 'selected' : '' }}>การวิเคราะห์ข้อมูลด้วย Excel</option>
-                <option value="การเขียนโปรแกรมด้วย Python" {{ old('course') === 'การเขียนโปรแกรมด้วย Python' ? 'selected' : '' }}>การเขียนโปรแกรมด้วย Python</option>
-                <option value="การสร้าง Dashboard ด้วย Power BI" {{ old('course') === 'การสร้าง Dashboard ด้วย Power BI' ? 'selected' : '' }}>การสร้าง Dashboard ด้วย Power BI</option>
+                @foreach($courses as $c)
+                    <option value="{{ $c->name }}" {{ old('course') === $c->name ? 'selected' : '' }}>{{ $c->name }}</option>
+                @endforeach
             </select>
         </div>
 

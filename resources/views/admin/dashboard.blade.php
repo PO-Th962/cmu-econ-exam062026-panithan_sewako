@@ -99,49 +99,6 @@
         font-weight: 700;
     }
 
-    /* Calculator Section */
-    .calc-section {
-        background: #f1f8e9;
-        border: 1px solid #d0e7b5;
-        border-left: 5px solid #7cb342;
-        padding: 25px;
-        border-radius: var(--border-radius-md);
-        margin-bottom: 35px;
-    }
-    .calc-title {
-        color: #33691e;
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .calc-form {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .calc-input-wrapper {
-        flex: 1;
-        min-width: 250px;
-    }
-    .btn-calc {
-        background: #7cb342;
-        box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
-    }
-    .btn-calc:hover {
-        background: #689f38;
-        box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
-    }
-    .btn-calc-clear {
-        background: #e2e8f0;
-        color: #475569;
-    }
-    .btn-calc-clear:hover {
-        background: #cbd5e1;
-    }
 
     /* Table styling */
     .table-container {
@@ -169,7 +126,7 @@
         color: white;
     }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 @endsection
 
 @section('content')
@@ -218,31 +175,46 @@
         </div>
     </div>
 
-    <!-- Day Calculator -->
-    <div class="calc-section">
-        <h3 class="calc-title">โปรแกรมคำนวณวันจัดอบรมขั้นต่ำ (สูงสุด 35 คน/วัน)</h3>
-        <form method="POST" action="{{ route('admin.calculate') }}" class="calc-form">
+    <!-- Course Management Section -->
+    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary-color); padding: 25px; border-radius: var(--border-radius-md); margin-bottom: 35px;">
+        <h3 style="color: var(--primary-color); font-size: 18px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">จัดการหลักสูตร (เพิ่ม/ลบ หลักสูตร)</h3>
+        
+        <form method="POST" action="{{ route('admin.course.store') }}" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
             @csrf
-            <div class="calc-input-wrapper">
-                <input type="number" class="form-control" name="applicants" placeholder="กรอกจำนวนผู้สมัครทั้งหมดที่ต้องการอบรม" required value="{{ $applicantsInput }}">
+            <div style="flex: 1; min-width: 250px;">
+                <input type="text" class="form-control" name="name" placeholder="ระบุชื่อหลักสูตรใหม่..." required>
             </div>
-            <button type="submit" class="btn-submit btn-calc" style="width: auto; margin-top: 0;">คำนวณวันอบรม</button>
-            <a href="{{ route('admin.dashboard') }}" class="btn-cancel btn-calc-clear">ล้างข้อมูล</a>
+            <button type="submit" class="btn-submit" style="width: auto; margin-top: 0; padding: 14px 20px;">เพิ่มหลักสูตร</button>
         </form>
 
-        @if(!empty($applicantsInput))
-            <div style="margin-top: 20px; font-size: 16px; font-weight: 700; color: #33691e;">
-                 ผลการคำนวณ: ต้องใช้เวลาอบรมขั้นต่ำทั้งหมด <u>{{ $requiredDays }}</u> วัน
-            </div>
-            <div style="max-width: 280px; margin: 25px auto 0 auto; height: 280px;">
-                <canvas id="adminPieChart"></canvas>
-            </div>
-        @endif
+        <ul class="course-list" style="background: white; border-radius: 8px; border: 1px solid #e2e8f0; padding: 0 15px;">
+            @forelse($all_courses as $c)
+                <li class="course-item" style="align-items: center;">
+                    <span style="font-weight: 500;">{{ $c->name }}</span>
+                    <form method="POST" action="{{ route('admin.course.delete', $c->id) }}" onsubmit="return confirm('คุณต้องการลบหลักสูตรนี้ใช่หรือไม่?');" style="margin: 0;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-delete" style="border: none; cursor: pointer;">ลบ</button>
+                    </form>
+                </li>
+            @empty
+                <li class="course-item" style="color: var(--text-muted); padding: 15px 0;">ยังไม่มีหลักสูตรในระบบ</li>
+            @endforelse
+        </ul>
     </div>
 
+
     <!-- Registration List Table -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-        <h3 style="color: #1e3c72; font-weight: 700; font-size: 18px;">รายชื่อผู้ลงทะเบียนเข้าอบรมทั้งหมด</h3>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; flex-wrap: wrap; gap: 15px;">
+        <h3 style="color: var(--primary-color); font-weight: 700; font-size: 18px;">รายชื่อผู้ลงทะเบียนเข้าอบรมทั้งหมด</h3>
+        <form method="GET" action="{{ route('admin.dashboard') }}" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <label for="filter_date" style="margin-bottom: 0; font-size: 14px; font-weight: 600;">วันที่อบรม:</label>
+            <input type="date" id="filter_date" name="date" value="{{ request('date') }}" class="form-control" style="width: auto; padding: 8px 12px;">
+            <button type="submit" class="btn-submit" style="width: auto; padding: 8px 16px; margin: 0;">ค้นหา</button>
+            @if(request('date'))
+                <a href="{{ route('admin.dashboard') }}" class="btn-cancel" style="padding: 8px 16px; margin: 0;">ล้างทั้งหมด</a>
+            @endif
+        </form>
     </div>
     
     <div class="table-container">
@@ -282,34 +254,4 @@
 @endsection
 
 @section('extra-scripts')
-<script>
-@if(!empty($chartData))
-    const ctx = document.getElementById('adminPieChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: {!! json_encode(array_keys($chartData)) !!},
-            datasets: [{
-                data: {!! json_encode(array_values($chartData)) !!},
-                backgroundColor: ['#1e3c72', '#7cb342', '#fbbc05', '#ea4335', '#9c27b0'],
-                borderWidth: 1
-            }]
-        },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        font: {
-                            family: 'Sarabun'
-                        }
-                    }
-                }
-            }
-        }
-    });
-@endif
-</script>
 @endsection

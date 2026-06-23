@@ -23,5 +23,19 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ]
         );
+
+        // เพิ่มหลักสูตรเริ่มต้น 3 หลักสูตร
+        $courses = [
+            'การวิเคราะห์ข้อมูลด้วย Excel',
+            'การเขียนโปรแกรมด้วย Python',
+            'การสร้าง Dashboard ด้วย Power BI'
+        ];
+
+        foreach ($courses as $course) {
+            DB::table('courses')->updateOrInsert(
+                ['name' => $course],
+                ['created_at' => now(), 'updated_at' => now()]
+            );
+        }
     }
 }
