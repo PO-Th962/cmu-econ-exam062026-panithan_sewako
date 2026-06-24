@@ -57,14 +57,14 @@ class AdminAuthController extends Controller
                 'token_expiry' => $expiry,
             ]);
 
-            // แสดง PIN ออกทาง Terminal ของ Docker เพื่อความสะดวกในการทดสอบ
+
             \Illuminate\Support\Facades\Log::channel('stderr')->info("\n==================================\nADMIN RESET PIN สำหรับ {$admin->email} คือ: {$pin}\n==================================\n");
 
             try {
                 Mail::to($admin->email)->send(new AdminResetPinMail($pin));
             } catch (\Exception $e) {
                 \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
-                // ไม่ต้อง return back() เพื่อให้สามารถนำ PIN จาก Docker terminal ไปทดสอบต่อได้
+
             }
 
             return redirect()->route('admin.verify_pin')->with([

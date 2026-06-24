@@ -14,16 +14,28 @@
         border-radius: var(--border-radius-md);
         margin-bottom: 25px;
         font-size: 14px;
+        gap: 12px;
     }
     .user-info {
         font-weight: 500;
         color: #1e3c72;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
     }
     .logout-link {
         color: #dc3545;
         text-decoration: none;
         font-weight: 600;
         transition: color 0.2s ease;
+        white-space: nowrap;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        font-size: inherit;
+        flex-shrink: 0;
     }
     .logout-link:hover {
         color: #bd2130;
@@ -45,12 +57,44 @@
         margin-top: 3px;
         transform: scale(1.1);
         cursor: pointer;
+        flex-shrink: 0;
     }
     .pdpa-label {
         cursor: pointer;
-        line-height: 1.4;
+        line-height: 1.5;
         font-weight: normal;
         color: #5d4037;
+        font-size: 13px;
+    }
+
+    /* ── Responsive ─────────────────────────── */
+    @media (max-width: 600px) {
+        .user-bar {
+            padding: 10px 14px;
+            font-size: 13px;
+        }
+        .pdpa-box {
+            font-size: 13px;
+            padding: 12px;
+        }
+        .pdpa-label {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .user-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .user-info {
+            white-space: normal;
+            overflow: visible;
+        }
+        .logout-link {
+            font-size: 13px;
+        }
     }
 </style>
 @endsection

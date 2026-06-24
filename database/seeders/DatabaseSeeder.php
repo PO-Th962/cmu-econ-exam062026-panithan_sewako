@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+
     public function run(): void
     {
-        // เพิ่มหรืออัปเดตบัญชีผู้ดูแลระบบ (Admin)
+
         DB::table('admins')->updateOrInsert(
             ['username' => 'admin'],
             [
@@ -24,7 +22,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // เพิ่มหลักสูตรเริ่มต้น 3 หลักสูตร
+
         $courses = [
             'การวิเคราะห์ข้อมูลด้วย Excel',
             'การเขียนโปรแกรมด้วย Python',

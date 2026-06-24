@@ -263,12 +263,114 @@
             background-color: #f8fafc;
         }
 
-        @media (max-width: 600px) {
-            .glass-card {
-                padding: 24px;
-            }
+        /* =============================================
+           RESPONSIVE BREAKPOINTS
+        ============================================= */
+
+        /* Tablet & Large Mobile (≤768px) */
+        @media (max-width: 768px) {
             body {
-                padding: 20px 10px;
+                padding: 24px 16px;
+                justify-content: flex-start;
+                align-items: stretch;
+            }
+
+            .glass-card {
+                padding: 28px 24px;
+                border-radius: var(--border-radius-md);
+                max-width: 100% !important;
+            }
+
+            .glass-card:hover {
+                transform: none;
+            }
+
+            h2 {
+                font-size: 20px;
+                text-align: center;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+        }
+
+        /* Mobile (≤600px) */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .glass-card {
+                padding: 20px 16px;
+            }
+
+            h2 {
+                font-size: 18px;
+                gap: 8px;
+            }
+
+            .form-control {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            .btn-submit,
+            .btn-cancel {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+
+            footer {
+                margin-top: 24px;
+                font-size: 11px;
+                padding: 0 8px;
+            }
+        }
+
+        /* Small Mobile (≤480px) */
+        @media (max-width: 480px) {
+            body {
+                padding: 12px 10px;
+            }
+
+            .glass-card {
+                padding: 18px 14px;
+            }
+
+            h2 {
+                font-size: 16px;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            label {
+                font-size: 13px;
+            }
+
+            .form-control {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .message-success,
+            .message-error {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            th {
+                font-size: 12px;
+                padding: 10px 8px;
+            }
+
+            td {
+                font-size: 12px;
+                padding: 10px 8px;
             }
         }
     </style>
